@@ -5,7 +5,6 @@ require('dotenv').config();
 const app = express();
 app.use(express.json()); // Sunucunun JSON formatındaki verileri anlamasını sağlar
 
-// 1. ADIM: Tüm kitapları getiren GET isteği
 app.get('/kitaplar', async (req, res) => {
   try {
     const sonuc = await pool.query('SELECT * FROM kitaplar ORDER BY id ASC');
@@ -16,7 +15,7 @@ app.get('/kitaplar', async (req, res) => {
   }
 });
 
-// 2. ADIM: Veritabanına yeni kitap ekleyen POST isteği
+
 app.post('/kitaplar', async (req, res) => {
   try {
     // Postman'den (dış dünyadan) gelen verileri yakalıyoruz
@@ -36,7 +35,6 @@ app.post('/kitaplar', async (req, res) => {
   }
 });
 
-// 3. ADIM: Kitap bilgilerini/okundu durumunu güncelleyen PUT isteği
 app.put('/kitaplar/:id', async (req, res) => {
   try {
     const { id } = req.params; // URL'den gelen id numarasını alıyoruz (Örn: /kitaplar/3)
@@ -58,7 +56,6 @@ app.put('/kitaplar/:id', async (req, res) => {
   }
 });
 
-// 4. ADIM: ID'ye göre kitap silen DELETE isteği
 app.delete('/kitaplar/:id', async (req, res) => {
   try {
     const { id } = req.params;
